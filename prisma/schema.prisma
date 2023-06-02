@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id_account         Int      @id @default(autoincrement())
+  account            String   @db.VarChar(255)
+  business_name      String   @db.VarChar(255)
+  rfc                String   @unique @db.VarChar(13)
+  tax_regime         String   @db.VarChar(255)
+  tax_residence      String   @db.VarChar(255)
+  unit_measure_key   String   @db.VarChar(255)
+  status             Boolean  @db.Boolean
+  participant_status Boolean  @db.Boolean
+  evidence           Boolean  @db.Boolean
+  active_automation  Boolean  @db.Boolean
+  payment_vouchers   Boolean  @db.Boolean
+  payment_method     String   @db.VarChar(255)
+  addendum           Boolean  @db.Boolean
+  bank               String   @db.VarChar(255)
+  branch             String   @db.VarChar(20)
+  account_number     String   @db.VarChar(20)
+  interbank_key      String   @db.VarChar(18)
+  contact_number     String   @db.VarChar(10)
+  createData         DateTime @default(now())
+}
+
+model Subaccount {
+  id_subaccount    Int      @id @default(autoincrement())
+  business_name    String   @db.VarChar(255)
+  rfc              String   @db.VarChar(13)
+  tax_regime       String   @db.VarChar(255)
+  cfdi             String   @db.VarChar(255)
+  subaccount       String   @db.VarChar(255)
+  order_account    String   @db.VarChar(255)
+  unit_measure_key String   @db.VarChar(255)
+  createData       DateTime @default(now())
+}
