@@ -22,13 +22,34 @@ router.get('/accounts/:rfc', async (req, res) => {
 });
 
 router.post('/accounts', async (req, res) => {
-  const newAccount = await prisma.account.create({
-    data: req.body,
-  });
-  res.json(newAccount);
+  try {
+    const newAccount = await prisma.account.create({
+      data: req.body,
+    });
+    res.json(newAccount);
+  } catch (e) {
+    console.log('error', e);
+    if (e.code === 'P2002')
+      return res
+        .status(400)
+        .json({ error: 'El RFC ya existe', target: e.meta.target });
+  }
 });
 
 router.delete('/accounts/:rfc', async (req, res) => {
+  try {
+    const accountDelete = await prisma.account.delete({
+      where: {
+        rfc: req.params.rfc,
+      },
+    });
+    res.json(accountDelete);
+  } catch (e) {
+    console.log('error', e);
+    if (e.code === 'P2025')
+      return res.status(400).json({ error: 'El registro no existe' });
+  }
+  /*
   const accountDelete = await prisma.account.delete({
     where: {
       rfc: req.params.rfc,
@@ -36,6 +57,7 @@ router.delete('/accounts/:rfc', async (req, res) => {
   });
   if (!accountDelete)
     return res.status(404).json({ error: 'Product not found' });
+    */
 });
 
 router.put('/account/:rfc', async (req, res) => {
