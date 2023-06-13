@@ -44,3 +44,28 @@ model Subaccount {
   unit_measure_key String   @db.VarChar(255)
   createData       DateTime @default(now())
 }
+
+model invoices {
+  id_invoices        Int      @id @default(autoincrement())
+  rfc                String   @db.VarChar(13)
+  subaccount         String   @db.VarChar(255)
+  fuf                String   @db.VarChar(255)
+  uuid               String   @db.VarChar(255)
+  related_uuid       String   @db.VarChar(255)
+  status             String   @db.VarChar(255)
+  createData         DateTime @default(now())
+  series             String   @db.VarChar(255)
+  folio              Int      @db.Integer
+  amount_paid        Decimal  @db.Money
+  amount_outstanding Decimal  @db.Money
+  pdf                String   @db.VarChar(255)
+  xml                String   @db.VarChar(255)
+  total              Decimal  @db.Money
+}
+
+model log_invoices {
+  id_action       Int    @id @default(autoincrement())
+  user_identifier String @db.VarChar(255)
+  user_name       String @db.VarChar(255)
+  action          String @db.VarChar(255)
+}

@@ -18,9 +18,9 @@ Con esto ya se tendra la conexion entra la base de datos y nuestra api.
 
 ## Esquema de las tablas de base de datos
 
-En la ruta prisma/schema.prisma se encuentra la estructura de las tablas que utilizar nuestra base datos, conformada por el nombre del campo, tipo de campo, longitud.
+En la ruta prisma/schema.prisma se encuentra la estructura de las tablas que utilizara nuestra base datos, conformada por el nombre del campo, tipo de campo, longitud.
 
-1. Una vez creado este archivo si es que no lo tiene o con el archivo que maneje el proyecto debar correr el siguiente comando en la terminal.
+1. Una vez creado este archivo, si es que no lo tiene o con el archivo que maneje el proyecto, debera correr el siguiente comando en la terminal.
 
 ```
 npx prisma migrate dev
