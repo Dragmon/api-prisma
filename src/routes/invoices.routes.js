@@ -78,4 +78,19 @@ router.post('/invoicesfilter', async (req, res) => {
   }
 });
 
+router.put('/invoicesupdate', async (req, res) => {
+  try {
+    const updateInvoice = await prisma.invoices.update({
+      where: {
+        id_invoices: req.body.id_invoices,
+      },
+      data: req.body,
+    });
+    res.json(updateInvoice);
+  } catch (e) {
+    console.log('error', e);
+    return res.status(400).json({ name: e.name, message: e.message });
+  }
+});
+
 export default router;

@@ -69,3 +69,17 @@ model log_invoices {
   user_name       String @db.VarChar(255)
   action          String @db.VarChar(255)
 }
+
+model table_uuid {
+  id_uuid                 Int      @id @default(autoincrement())
+  type                    String   @db.VarChar(255)
+  date_issue              DateTime @db.Timestamp(3)
+  issuer_company_name     String   @db.VarChar(255)
+  recipient_business_name String   @db.VarChar(255)
+  series                  String   @db.VarChar(255)
+  invoice                 String   @db.VarChar(255)
+  original_total          Decimal  @db.Money
+  fiscal_folio_uuid       String   @db.VarChar(255)
+  fuf                     String   @db.VarChar(255)
+  record_creation_date    DateTime @default(now())
+}
