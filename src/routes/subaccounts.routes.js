@@ -60,7 +60,7 @@ router.delete('/subaccounts/:id_subaccount', async (req, res) => {
   console.log('req', typeof req.params.id_subaccount);
   try {
     //const subAccountDelete = await prisma.account.delete({
-    const subAccountDelete = await prisma.account.findFirst({
+    const subAccountDelete = await prisma.subaccount.findFirst({
       where: {
         id_subaccount: parseInt(req.params.id_subaccount),
       },
